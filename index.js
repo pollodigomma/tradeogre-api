@@ -110,5 +110,8 @@ TradeOgre.prototype.getBalance = function (currency, callback) {
 	 */
 	this._post('/account/balance', { currency: currency }, callback)
 }
+TradeOgre.prototype.getBalances = function (callback) {
+	this._post('/account/balances', {}, callback)
+}
 
 module.exports = TradeOgre
