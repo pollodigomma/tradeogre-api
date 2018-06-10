@@ -1,3 +1,6 @@
+.DS*
+.gitignore
+
 # Logs
 logs
 *.log

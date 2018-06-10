@@ -1,6 +1,6 @@
 {
   "name": "tradeogre-api",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "TradeOgre REST API wrapper",
   "main": "index.js",
   "scripts": {
