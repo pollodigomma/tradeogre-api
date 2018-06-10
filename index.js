@@ -4,7 +4,7 @@ var TradeOgre = function (key, secret) {
 
 	var self = this
 
-	self.VERSION = '1.1.2'
+	self.VERSION = '1.1.1'
 
 	self._key = key
 	self._secret = secret
@@ -110,7 +110,7 @@ TradeOgre.prototype.getBalance = function (currency, callback) {
 	 */
 	this._post('/account/balance', { currency: currency }, callback)
 }
-TradeOgre.prototype.getBalances = function (currency, callback) {
+TradeOgre.prototype.getBalances = function (callback) {
 	/**
 	 * @param currency
 	 */
