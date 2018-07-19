@@ -4,7 +4,7 @@ var TradeOgre = function (key, secret) {
 
 	var self = this
 
-	self.VERSION = '1.1.4'
+	self.VERSION = '1.1.6'
 
 	self._key = key
 	self._secret = secret
@@ -13,23 +13,19 @@ var TradeOgre = function (key, secret) {
 	self._publicUrl = 'https://' + self._endpoint
 	self._privateUrl = 'https://' + self._key + ":" + self._secret + "@" + self._endpoint
 
-	self._request = function (method, path, options, callback) {
-		if (method === 'GET') {
-			return self._get(path, options, callback)
-		}
-		if (method === 'POST') {
-			return self._post(path, options, callback)
-		}
-	}
 	self._get = function (path, options, callback) {
 		var qs = ''
 		for (var o in options) {
 			qs += '/' + options[o]
 		}
+		var path = path + qs
+		if (!path.match(self._publicUrl) && !path.match(self._privateUrl)) {
+			path = self._publicUrl + path
+		}
 		return request(
 			{
 				method: "GET",
-				url: self._publicUrl + path + qs
+				url: path,
 			},
 			callback
 		)
@@ -114,7 +110,7 @@ TradeOgre.prototype.getBalances = function (callback) {
 	/**
 	 * @param currency
 	 */
-	this._post('/account/balances', {}, callback)
+	this._get(this._privateUrl + '/account/balances', {}, callback)
 }
 
 module.exports = TradeOgre
